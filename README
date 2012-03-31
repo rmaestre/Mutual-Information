@@ -1,1 +1,5 @@
 Roberto Maestre -- rmaestre@gmail.com
+
+https://controls.engin.umich.edu/wiki/index.php/Correlation_and_Mutual_Information
+
+Mutual information (also referred to as transinformation) is a quantitative measurement of how much one random variable (Y) tells us about another random variable (X). In this case, information is thought of as a reduction in the uncertainty of a variable. Thus, the more mutual information between X and Y, the less uncertainty there is in X knowing Y or Y knowing X. For our purposes, within any given process, several parameters must be selected in order to properly run the process. The relationship between variables is integral to correctly determine working values for the system. For example, adjusting the temperature in a reactor often causes the pressure to change as well. Mutual information is most commonly measured in logarithms of base 2 (bits) but is also found in base e (nats) and base 10 (bans).
