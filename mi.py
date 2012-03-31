@@ -68,5 +68,5 @@ print 'Elapsed time: %f\n' % (time.time() - t_start)
 
 # Print mutual information between var_1 (3,4,5,5,3,2,2,6,6,1) and var_2 (7,2,1,3,2,8,9,1,2,0)
 t_start = time.time()
-print 'MI: %f' % mi.get_mi(1,2,10)
+print 'MI: %f' % mi.get_mi(1,2,10,True)
 print 'Elapsed time: %f\n' % (time.time() - t_start)
