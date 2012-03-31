@@ -56,8 +56,12 @@ class MutualInformation:
 data = array( [ (1,1,1,0,0,0),
                 (0,0,0,1,1,1),
                 (1,0,1,1,0,0)] )
-                
+# Create object
 mi = MutualInformation(data)
+
+# Print mutual information between var_0 (1,1,1,0,0,0) and var_1 (0,0,0,1,1,1)
 print mi.get_mi(0,1)
+
 print ''
+# Print mutual information between var_1 (0,0,0,1,1,1) and var_2 (1,0,1,1,0,0)
 print mi.get_mi(1,2, True)
