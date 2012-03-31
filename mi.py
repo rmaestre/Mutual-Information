@@ -3,9 +3,10 @@
 Script to calculate Mutual Information between two discrete random variables
 
 Roberto maestre - rmaestre@gmail.com
+Bojan Mihaljevic - boki.mihaljevic@gmail.com
 """
 from __future__ import division
-from numpy  import *
+from numpy  import array, shape, where, in1d
 import math
 import time
 
@@ -41,8 +42,9 @@ class MutualInformation:
         for value_x in values_x:
             for value_y in values_y:
                 px = shape(where(data[x_index]==value_x))[1] / self.n_cols
-                py =shape(where(data[y_index]==value_y))[1] / self.n_cols
-                pxy = len(where(in1d(where(data[x_index]==value_x)[0], where(data[y_index]==value_y)[0])==True)[0]) / self.n_cols
+                py = shape(where(data[y_index]==value_y))[1] / self.n_cols
+                pxy = len(where(in1d(where(data[x_index]==value_x)[0], 
+                                where(data[y_index]==value_y)[0])==True)[0]) / self.n_cols
                 if pxy > 0.0:
                     summation += pxy * math.log((pxy / (px*py)), log_base)
                 if debug:
@@ -52,21 +54,21 @@ class MutualInformation:
         return summation
 
 # Define data array
-data = array( [ (0,0,1,1,0,1,1,2,2,2),
-                (3,4,5,5,3,2,2,6,6,1),
-                (7,2,1,3,2,8,9,1,2,0),
-                (7,7,7,7,7,7,7,7,7,7)] )
+data = array( [ (0, 0, 1, 1, 0, 1, 1, 2, 2, 2),
+                (3, 4, 5, 5, 3, 2, 2, 6, 6, 1),
+                (7, 2, 1, 3, 2, 8, 9, 1, 2, 0),
+                (7, 7, 7, 7, 7, 7, 7, 7, 7, 7)] )
                 
 # Create object
 mi = MutualInformation(data)
 
 # Print mutual information between var_0 (0,0,1,1,0,1,1,2,2,2) and var_1 (3,4,5,5,3,2,2,6,6,1)
 t_start = time.time()
-print 'MI: %f' % mi.get_mi(0,1,10)
+print 'MI: %f' % mi.get_mi(0, 1, 10)
 print 'Elapsed time: %f\n' % (time.time() - t_start)
 
 
 # Print mutual information between var_1 (3,4,5,5,3,2,2,6,6,1) and var_2 (7,2,1,3,2,8,9,1,2,0)
 t_start = time.time()
-print 'MI: %f' % mi.get_mi(1,2,10,True)
+print 'MI: %f' % mi.get_mi(1, 2, 10, True)
 print 'Elapsed time: %f\n' % (time.time() - t_start)
