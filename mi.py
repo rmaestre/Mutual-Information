@@ -7,6 +7,7 @@ Roberto maestre - rmaestre@gmail.com
 from __future__ import division
 from numpy  import *
 import math
+import time
 
 class MutualInformation:
     
@@ -20,7 +21,7 @@ class MutualInformation:
         self.n_rows = data.shape[0]
         self.n_cols = data.shape[1]
         
-    def get_mi(self, x_index, y_index, debug = False):
+    def get_mi(self, x_index, y_index, log_base, debug = False):
         """
         Calculate and return Mutual information between two random variables
         """
@@ -43,25 +44,29 @@ class MutualInformation:
                 py =shape(where(data[y_index]==value_y))[1] / self.n_cols
                 pxy = len(where(in1d(where(data[x_index]==value_x)[0], where(data[y_index]==value_y)[0])==True)[0]) / self.n_cols
                 if pxy > 0.0:
-                    summation += pxy * math.log((pxy / (px*py)), 2)
+                    summation += pxy * math.log((pxy / (px*py)), log_base)
                 if debug:
                     print '(%d,%d) px:%f py:%f pxy:%f' % (value_x, value_y, px, py, pxy)
         if debug:
             print 'var_%d var_%d MI=%f\n\n' % (x_index, y_index, summation)
         return summation
 
-    
-    
 # Define data array
-data = array( [ (1,1,1,0,0,0),
-                (0,0,0,1,1,1),
-                (1,0,1,1,0,0)] )
+data = array( [ (0,0,1,1,0,1,1,2,2,2),
+                (3,4,5,5,3,2,2,6,6,1),
+                (7,2,1,3,2,8,9,1,2,0),
+                (7,7,7,7,7,7,7,7,7,7)] )
+                
 # Create object
 mi = MutualInformation(data)
 
-# Print mutual information between var_0 (1,1,1,0,0,0) and var_1 (0,0,0,1,1,1)
-print mi.get_mi(0,1)
+# Print mutual information between var_0 (0,0,1,1,0,1,1,2,2,2) and var_1 (3,4,5,5,3,2,2,6,6,1)
+t_start = time.time()
+print 'MI: %f' % mi.get_mi(0,1,10)
+print 'Elapsed time: %f\n' % (time.time() - t_start)
 
-print ''
-# Print mutual information between var_1 (0,0,0,1,1,1) and var_2 (1,0,1,1,0,0)
-print mi.get_mi(1,2, True)
+
+# Print mutual information between var_1 (3,4,5,5,3,2,2,6,6,1) and var_2 (7,2,1,3,2,8,9,1,2,0)
+t_start = time.time()
+print 'MI: %f' % mi.get_mi(1,2,10)
+print 'Elapsed time: %f\n' % (time.time() - t_start)
