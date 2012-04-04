@@ -183,7 +183,7 @@ for i in range(1,data.shape[0]):
 n_rows = data.shape[0]
 i = 0
 while i < n_rows:
-    j = 0
+    j = i + 1
     while j < n_rows:
         if j != i:
             nose.tools.assert_almost_equal(it_tool.mutual_information(i, j, 10), 
