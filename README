@@ -14,7 +14,7 @@ data:
   (0, 1, 2, 3, 4, 5, 6, 7, 1, 1) ]
 
 
-./mi.py
+./it_tool.py
 
 Entropy(X_1): 0.759176
 Elapsed time: 0.000941
